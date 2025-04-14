@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+    <head>
+        <!-- <meta>: HTML 문서의 메타데이터 정의
+         메타데이터란 '데이터에 대한 데이터'
+         책의 제목,저자,출판일을 책에 메타데이터라고 하는 것처럼
+         웹페이지 로딩에 필요한 데이터나 부가적인 데이터 등등
+         <link>: 외부 CSS 파일 등 외부 자원 연결 -->
+        <meta charset="UTF-8">
+        <title style>리버스 : 1999</title>
+        <meta name="author" content="20221018">
+        <meta name="keywords" content="Game: REVERSE1999 HomePage">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 창을 줄이면 이미지들이 잘린다. 부트스트랩을 통해 반응형 웹 페이지 작성
+         창을 줄이면 웹페이지가 크기에 맞게 줄어든다 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+        <base href="http://127.0.0.1:5500">
+        <!-- 현재 웹 서버 주소 http://127.0.0.1:5500
+         아마 이 웹 서버가 가리키는 루트는 WEB_myCreate_reverse1999/
+         절대경로: 처음부터 끝까지 정확한 경로를 의미하기 때문에 경로가 길다.
+         상대경로: 현재 파일 위치를 기준으로 하는 경로 ../는 상위폴더 ./현재 폴더(생략가능) /최상위(루트)폴더
+         <base>는 모든 상대 경로 기준 URL을 설정하는 것 -->
+        <style>
+            table {
+                font-size: 20pt;
+                color: white;
+            }
+        </style>
+        <!-- table로 할 수 있는 것 2가지 정보(표로 구성), 레이아웃 구성용
+         정보를 표로 구성: 이미지,문자,크기,색상 등 디자인
+         레이아아웃 구성용: div와는 다른 형태 
+         table, caption, thead, tfoot, tbody, th, td, tr -->
+    </head>
+    <body style="background-color:rgb(73, 71, 71);">
+        <!-- <div style="display: flex; justify-content: center; font-weight: bold; font-style: italic; text-decoration: underline; font-family: '굴림'; color:white;">
+         "display: flex;" (플렉스 컨테이너로 설정해야 함, 
+         "justify-content: center;" (정렬-내용, 내용을 중앙으로 정렬)
+         justify-content는 flex컨테이너 내 아이템을 정렬하기 때문에 flex컨테이너로 지정해야 함)
+            <img src="image/top-logo.png" width="153" height="33">
+            <a href="https://reverse1999.haoplay.com/" target="_blank" style="color: rgb(170, 43, 170);">
+                <h3 style="font-size: 24px;">
+                    홈</h3>
+                </a>
+            <h3 style="font-size: 24px;">
+                |뉴스|캐릭터|세계관|게임 소개|확률 표시|충전</h3>
+            "font-style: italic;"(글씨 기울이기)
+            </div> -->
+
+        <!-- 이전 로고&메뉴 주석처리 후, 부트스트랩 네이게이션바 적용 -->
+        <!-- class="navbar navbar-expand-lg"를 바꾸면 메뉴바 아이템이나 드롭다운이 사라지므로 삭제 X -->
+        <!-- 클래스 안에서 bg-body-tertiary를 bg-properly처럼 bg-*로 바꾸든가, 지우고 style=""을 지정해줘야 함: 아래 속성 참고, nav에서는 bg- 뒤에 추가 -->
+         <!-- 테이블에 색상 적용했을시 예시: table에 calss="table" 작성, table- 뒤에 추가
+         "table-primary"
+         "table-secondary"
+         "table-success"
+         "table-danger"
+         "table-warning"
+         "table-info"-->
+        <nav class="navbar navbar-expand-lg" style="background-color: rgb(40, 13, 46)" data-bs-theme="dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="https://reverse1999.haoplay.com/"><img src="image/top-logo.png" width="153" height="33"> reverse: 1999</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="https://reverse1999.haoplay.com/">홈</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">뉴스</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">캐릭터</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">세계관</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      지원
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://reverse1999.haoplay.com/rate.html" target="_blank">확률 표시</a></li>
+                      <li><a class="dropdown-item" href="https://i2.haoplay.com/new/index.html?appid=2072023&l=ko" target="_blank">충전</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <hr>
+        <!-- <a>하이퍼링크: 메타데이터 link와는 다르게 <body>에서 주로 사용 / html의 내부 문서들은 모두 링크를 통해 연결된다 
+        target 속성 4가지: _blank(새 탭) _self(기본값, 현재 창) _parent(이전 부모 창) _top(현재 윈도우 전체)-->
+        <div style="display: flex; justify-content: center;" >
+            <a href="index.html" target="_self">
+                <img src="image/body_Main.jpg" width="1800" height="960">
+                </a>
+            </div>
+        <hr>
+        <!-- 하단 -->
+        <div style="display: flex; justify-content: center;">
+            <table class="table table-bordered border-danger" border="5">
+                <caption>메인 캐릭터</caption>
+                <tbody>
+                    <!-- style="background-color: orange;" 부트스트랩 class="table" 적용 전 -->
+                    <tr class="table-danger">
+                        <td style="font-size: 15px;">사진</td>
+                        <td><img src="" alt="없음"></td>
+                        <td><img src="image/sonetto_face.png"></td>
+                        <td><img src="image/regulus_face.png"></td>
+                        <td><img src="image/sotheby_face.png"></td>
+                        <td><img src="image/druvis_face.png"></td>
+                        <td><img src="" alt="없음"></td>
+                    </tr>
+                    <!-- style="background-color: gray" 부트스트랩 class="table" 적용 전 -->
+                    <tr class="table-dark">
+                        <td style="width: 40px; height: 40px; font-size: 15px;">이름</td>
+                        <td><a href="https://namu.wiki/w/%EB%B2%84%ED%8B%B4" target="_blank" style="color:purple;">버틴</a></td>
+                        <td><a href="https://namu.wiki/w/%EC%86%8C%EB%84%A4%ED%8A%B8(%EB%A6%AC%EB%B2%84%EC%8A%A4:%201999)" target="_blank" style="color:white">소네트</a></td>
+                        <td><a href="https://namu.wiki/w/%EB%A0%88%EA%B5%B4%EB%A3%A8%EC%8A%A4(%EB%A6%AC%EB%B2%84%EC%8A%A4:%201999)" target="_blank" style="color:red">레굴루스</a></td>
+                        <td><a href="https://namu.wiki/w/%EC%86%8C%EB%8D%94%EB%B9%84(%EB%A6%AC%EB%B2%84%EC%8A%A4:%201999)" target="_blank" style="color:greenyellow">소더비</a></td>
+                        <td><a href="https://namu.wiki/w/%EB%93%9C%EB%A3%A8%EB%B9%84%EC%8A%A4" target="_blank" style="color:green">드루비스</a></td>
+                        <td><a href="https://namu.wiki/w/%EB%A6%B4%EB%A6%AC%EC%95%84(%EB%A6%AC%EB%B2%84%EC%8A%A4:%201999)" target="_blank" style="color:brown">릴리아</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: center;">
+            <img src="image/company_logo.png" width="225" height="74">
+            <h3 style="font-style: italic; font-family: '굴림'; color: white;">
+                개인정보 보호 약관
+                </h3>
+            </div>
+        <div style="display: flex; justify-content: center;">
+            <h5 style="font-weight: 300;">
+                © 2019 HAOPLAY Limited All rights reserved.
+                © 2019 HAOPLAY Limited All rights reserved.
+                </h5>
+            </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    </body>
+</html>
