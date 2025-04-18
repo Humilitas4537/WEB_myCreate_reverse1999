@@ -31,3 +31,23 @@ if (true) {
     //e = 5;  // Error
     //const f // Error: const는 선언과 동시에 값을 초기화 해야함
     console.log(e);
+
+    // 완전 중요! 아래 코드에서 재선언,재할당의 문제는 없다!
+    // 이러한 이유로 for (const 임의의 변수 of 객체)같은 반복문에서 const가 여러번 재선언,재할당 되어도 문제가 없다!
+    function exFunction1()
+    {
+        const A="const A 선언,할당"
+        console.log(`블록 안, exFunction1: ${A}`)
+        //const A = "새로운 const A 선언,할당" //오류
+        //console.log(`블록 안: ${A}`)
+    }
+    
+    function exFunction2()
+    {
+        const A="const A 선언,할당"
+        console.log(`블록 안: exFunction2: ${A}`)
+    }
+    exFunction1()
+    exFunction2()
+    const A = "새로운 const A 선언,할당" //오류 없음
+    console.log(`블록 밖: ${A}`) 
