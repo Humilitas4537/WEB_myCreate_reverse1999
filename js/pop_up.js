@@ -23,10 +23,14 @@ function show_clock(){
     setTimeout(show_clock, 1000); //1초마다 갱신
     }
 
+/*
 function over(obj) {
     obj.src="../image/top-logo3.png";
     }
 function out(obj) {
     obj.src="../image/top-logo.png";
     }
+*/
+const over = obj => obj.src="../image/top-logo3.png";
+const out = obj => obj.src="../image/top-logo.png";
         
