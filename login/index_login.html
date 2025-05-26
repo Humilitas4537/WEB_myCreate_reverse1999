@@ -2,48 +2,28 @@
 
 <html lang="ko">
     <head>
-        <!-- <meta>: HTML 문서의 메타데이터 정의
-         메타데이터란 '데이터에 대한 데이터'
-         책의 제목,저자,출판일을 책에 메타데이터라고 하는 것처럼
-         웹페이지 로딩에 필요한 데이터나 부가적인 데이터 등등
-         <link>: 외부 CSS 파일 등 외부 자원 연결 -->
         <meta charset="UTF-8">
         <title style>리버스 : 1999</title>
         <meta name="author" content="20221018">
         <meta name="keywords" content="Game Homepage Reverse:1999">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- 창을 줄이면 이미지들이 잘린다. 부트스트랩을 통해 반응형 웹 페이지 작성
-         창을 줄이면 웹페이지가 크기에 맞게 줄어든다 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
         <base href="http://127.0.0.1:5500">
-        <!-- 현재 웹 서버 주소 http://127.0.0.1:5500
-         아마 이 웹 서버가 가리키는 루트는 WEB_myCreate_reverse1999/
-         절대경로: 처음부터 끝까지 정확한 경로를 의미하기 때문에 경로가 길다.
-         상대경로: 현재 파일 위치를 기준으로 하는 경로 ../는 상위폴더 ./현재 폴더(생략가능) /최상위(루트)폴더
-         <base>는 모든 상대 경로 기준 URL을 설정하는 것 -->
         <style>
             table {
                 font-size: 20pt;
                 color: white;
             }
         </style>
-        <!-- table로 할 수 있는 것 2가지 정보(표로 구성), 레이아웃 구성용
-         정보를 표로 구성: 이미지,문자,크기,색상 등 디자인
-         레이아웃 구성용: div와는 다른 형태
-         table, caption, thead, tfoot, tbody, th, td, tr -->
-         <script type="text/javascript" src="js/Basic_js_test.js"></script>
-         <!-- type="타입/서브타입" "text/javascript": 웹 브라우저가 <script>안의 코드나 src로 연결된 파일을 자바스크립트로 해석해서 실행 
-          하지만 html5에서는 생략해도 됨, text/javascript가 기본값이기 때문 -->
          <script type="text/javascript" defer src="js/search.js"></script>
-         <!-- 웹브라우저 동작: 자바스크립트 다운로드 후, 읽음->바로 실행 -->
-         <!-- html을 다 파싱하기 전에 자바스크립트가 실행이 되면 DOM이 생성되기 전이기 때문에 접근하지 못하는 html 요소가 생길 수 있어서 오류가 발생할 수 있음
-          <script>: 동기, html 파싱 중 스크립트를 만나면 파싱 중단하고 다운로드+실행
-          <script async>: 비동기, 스크립트 만나면 다운 후 바로 실행, 실행할 때 파싱 중단 / 다운이 끝난 순서대로 스크립트 실행: 코드 순서 무시
-          <script defer>: 비동기, 스트립트 만나면 다운로드, 파싱이 다 끝난 후 스크립트 실행, / 순서대로 스크립트 실행: 코드 순서 준수 -->
-         <script type="text/javascript" defer src="js/data_type.js"></script>
-         <script type="text/javascript" src="js/pop_up.js"></script>
+         <script type="text/javascript" defer src="js/pop_up.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+         <script defer src="js/login.js"></script>
+         <script defer src="js/session.js"></script>
+         <script defer src="js/crypto.js"></script>
+         <script defer src="js/jwt_token.js"></script>
     </head>
-    <body style="background-color:rgb(73, 71, 71);">
+    <body style="background-color:rgb(73, 71, 71);" onload="checkAuth(); init_logined();">
         <!-- <div style="display: flex; justify-content: center; font-weight: bold; font-style: italic; text-decoration: underline; font-family: '굴림'; color:white;">
          "display: flex;" (플렉스 컨테이너로 설정해야 함, "justify-content: center;" (정렬-내용, 내용을 중앙으로 정렬)
          justify-content는 flex컨테이너 내 아이템을 정렬하기 때문에 flex컨테이너로 지정해야 함)

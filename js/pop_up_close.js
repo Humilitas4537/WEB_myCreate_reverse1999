@@ -1,6 +1,6 @@
-var close_time2 = 10; // 10초 설정
+var close_time2 = 50; // 10초 설정
 
-setTimeout("close_window()", 10000);
+setTimeout("close_window()", 50000);
 //원래 close_widnow()하면 코드가 읽히면서 바로 실행이 됨.
 //하지만 이름만 써서 함수를 참조하게 하거나 
 // ""안에 close_window()라 하면 정상 작동함!!! <-- chatgpt도 모르는 방식!!!
