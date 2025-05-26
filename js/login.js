@@ -8,7 +8,7 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
     }
     session_check(); // 로그인 버튼이 아닌 init()에다가 추가, 로그인 버튼에다가 추가하는 것은 자원낭비
 }
-    
+
 function init_logined(){
     if(sessionStorage){
         decrypt_text(); // 복호화 함수
@@ -17,7 +17,34 @@ function init_logined(){
     alert("세션 스토리지 지원 x");
     }
 }
-    
+
+// 로그인 횟수 함수는 login.js, 로그아웃 횟수 함수는 logout.js
+function login_count(){
+    let count = getCookie("login_cnt");
+    if (!count){
+        count = 1;
+    }
+    else{
+        count = parseInt(count) + 1;
+    }
+    setCookie("login_cnt", count, 1);
+}
+// 3번 이상 실패 시 로그인 제한 / return login_failed();로 사용.
+function login_failed(){
+    count=getCookie("loginFail_count");
+    if (count === "6"){
+        alert("로그인이 6회 이상 실패하였습니다. 3분 간 로그인이 제한됩니다.")
+    }
+    if (!count){
+        count = 1;
+    }
+    else{
+        count = parseInt(count) + 1;
+    }
+    setCookie("loginFail_count", count, 1);
+    return false;
+}
+
 
 const check_xss = (input) => {
     // DOMPurify 라이브러리 로드 (CDN 사용)
@@ -50,12 +77,12 @@ function getCookie(name) {
             var cookie_array = cookie.split("; ");
             for ( var index in cookie_array) {
                 var cookie_name = cookie_array[index].split("=");
-                    if (cookie_name[0] == "id") {
+                    if (cookie_name[0] == name) {
                         return cookie_name[1];
                     }   
             }
         }
-    return ;
+    return;
 }
 
 const check_input = () => {
@@ -92,8 +119,8 @@ const check_input = () => {
         alert('아이디는 최소 5글자 이상 입력해야 합니다.');
         return false;
         }
-    if (passwordValue.length < 12) {
-        alert('비밀번호는 반드시 12글자 이상 입력해야 합니다.');
+    if (passwordValue.length < 10) {
+        alert('비밀번호는 반드시 10글자 이상 입력해야 합니다.');
         return false;
     }
     // match 함수는 없으면 null을 반환, / /사이의 문자열을 찾는 정규표현식
@@ -137,7 +164,10 @@ const check_input = () => {
     else{ // 아이디 체크 x
         setCookie("id", emailValue.value, 0); //날짜를 0 - 쿠키 삭제
     }
-        
+
+    // 로그인 횟수 쿠키 생성 및 변경
+    login_count();
+
     console.log('이메일:', emailValue);
     console.log('비밀번호:', passwordValue);
     session_set(); // 세션 생성
