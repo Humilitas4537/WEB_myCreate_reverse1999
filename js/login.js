@@ -31,7 +31,7 @@ function login_count(){
 }
 // 3번 이상 실패 시 로그인 제한 / return login_failed();로 사용.
 function login_failed(){
-    count=getCookie("loginFail_count");
+    let count=getCookie("loginFail_count");
     if (count === "6"){
         alert("로그인이 6회 이상 실패하였습니다. 3분 간 로그인이 제한됩니다.")
     }
