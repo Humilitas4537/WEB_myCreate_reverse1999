@@ -22,7 +22,7 @@ function getCookie(name) {
 
 function session_del() {//세션 삭제
     if (sessionStorage) {
-        sessionStorage.removeItem("Session_Storage_test");
+        sessionStorage.removeItem("Session_Storage_id");
         alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
     } else {
         alert("세션 스토리지 지원 x");
@@ -39,6 +39,7 @@ function logout_count(){
         count = parseInt(count) + 1;
     }
     setCookie("logout_cnt", count, 1);
+    localStorage.removeItem("jwt_token")
     location.href="../index.html";
 }
 

@@ -27,8 +27,8 @@ function verifyJWT(token) { // 토큰 검증
     // 3. 페이로드 파싱 및 만료 시간 검증
     const payload = JSON.parse(atob(encodedPayload)); // 디코딩 후 해석
     if (payload.exp < Math.floor(Date.now() / 1000)) { // 밀리초 단위
-    console.log('보안 토큰이 만료되었습니다');
-    return null;
+        console.log('보안 토큰이 만료되었습니다');
+        return null;
     }
     return payload; // 검증 성공
     } catch (error) {

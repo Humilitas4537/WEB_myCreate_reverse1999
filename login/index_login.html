@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
@@ -21,32 +19,10 @@
          <script defer src="js/login.js"></script>
          <script defer src="js/session.js"></script>
          <script defer src="js/crypto.js"></script>
+         <script defer src="js/crypto2.js"></script>
          <script defer src="js/jwt_token.js"></script>
     </head>
     <body style="background-color:rgb(73, 71, 71);" onload="checkAuth(); init_logined();">
-        <!-- <div style="display: flex; justify-content: center; font-weight: bold; font-style: italic; text-decoration: underline; font-family: '굴림'; color:white;">
-         "display: flex;" (플렉스 컨테이너로 설정해야 함, "justify-content: center;" (정렬-내용, 내용을 중앙으로 정렬)
-         justify-content는 flex컨테이너 내 아이템을 정렬하기 때문에 flex컨테이너로 지정해야 함)
-            <img src="image/top-logo.png" width="153" height="33">
-            <a href="https://reverse1999.haoplay.com/" target="_blank" style="color: rgb(170, 43, 170);">
-                <h3 style="font-size: 24px;">
-                    홈</h3>
-                </a>
-            <h3 style="font-size: 24px;">
-                |뉴스|캐릭터|세계관|게임 소개|확률 표시|충전</h3>
-            "font-style: italic;"(글씨 기울이기)
-            </div> -->
-
-        <!-- 이전 로고&메뉴 주석처리 후, 부트스트랩 네이게이션바 적용 -->
-        <!-- class="navbar navbar-expand-lg"를 바꾸면 메뉴바 아이템이나 드롭다운이 사라지므로 삭제 X -->
-        <!-- 클래스 안에서 bg-body-tertiary를 bg-properly처럼 bg-*로 바꾸든가, 지우고 style=""을 지정해줘야 함: 아래 속성 참고, nav에서는 bg- 뒤에 추가 -->
-         <!-- 테이블에 색상 적용했을시 예시: table에 calss="table" 작성, table- 뒤에 추가
-         "table-primary"
-         "table-secondary"
-         "table-success"
-         "table-danger"
-         "table-warning"
-         "table-info"-->
         <nav class="navbar navbar-expand-lg" style="background-color: rgb(40, 13, 46);" data-bs-theme="dark">
           <!-- 컨테이너는 최상위 레이아웃 영역을 의미미 -->
           <div class="container-fluid">
@@ -63,6 +39,9 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="https://reverse1999.haoplay.com/">홈</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login/profile.html" target='_blank'>기본정보(프로필)</a>
+                </li> 
                 <li class="nav-item">
                   <a class="nav-link" href="#">뉴스</a>
                 </li>

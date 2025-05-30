@@ -16,6 +16,7 @@ function decodeByAES256(key, data){
     return cipher.toString(CryptoJS.enc.Utf8);
 }
 
+// AES256은 256비트 -> 32바이트 길이의 Key를 사용한다.
 function encrypt_text(password){
     const k = "key"; // 클라이언트 키
     const rk = k.padEnd(32, " "); // AES256은 key 길이가 32

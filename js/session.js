@@ -4,40 +4,32 @@
 // ".input-box" / class가 input-box 인 요소
 // "input" / input 태그 중 "첫 번째"
 
-// querySelector는 document.getElementById()처럼 요소를 찾지만
-// 더 강력하고 유연한 방식이다.
-// 또한 맨 처음 일치하는 요소 하나를 찾아서 반환함.
-/*
-function session_set() { //세션 저장
-    let session_id = document.querySelector("#typeEmailX");
-    if (sessionStorage) {
-        sessionStorage.setItem("Session_Storage_test", session_id.value);
-    } else {
-        alert("세션 스토리지 지원 x");
-    }
-}
-*/
-function session_set() { //세션 저장
+// querySelector는 document.getElementById()처럼 요소를 찾는다.
+
+async function session_set() { //세션 저장
     let session_id = document.querySelector("#typeEmailX"); // DOM 트리에서 ID 검색
     let session_pass = document.querySelector("#typePasswordX"); // DOM 트리에서 pass 검색
     if (sessionStorage) {
+        // AES 알고리즘으로 비밀번호 암호화 후 세션 추가
         let en_text = encrypt_text(session_pass.value);
+        let encrypte_data = await encryptByAES_GCM(session_pass.value);
         sessionStorage.setItem("Session_Storage_id", session_id.value);
         sessionStorage.setItem("Session_Storage_pass", en_text);
+        sessionStorage.setItem("Session_Storage_pass2", encrypte_data);
     } else {
         alert("세션 스토리지 지원 x");
     }
 }
 
-/*
+
 function session_get() { //세션 읽기
     if (sessionStorage) {
-        return sessionStorage.getItem("Session_Storage_test");
+        return sessionStorage.getItem("Session_Storage_pass");
     } else {
         alert("세션 스토리지 지원 x");
     }
 }       
-*/
+/*
 function session_get() { //세션 읽기
     if (sessionStorage) {
         return sessionStorage.getItem("Session_Storage_pass");
@@ -45,14 +37,14 @@ function session_get() { //세션 읽기
         alert("세션 스토리지 지원 x");
     }
 }
+*/
 
 function session_check() { //세션 검사
-    if (sessionStorage.getItem("Session_Storage_test")) {
+    if (sessionStorage.getItem("Session_Storage_id")) {
         alert("이미 로그인 되었습니다.");
         location.href='../login/index_login.html'; // 로그인된 페이지로 이동
     }
 }
-
 /*
 function session_check() { //세션 검사
     if (sessionStorage.getItem("Session_Storage_id")) {
@@ -63,7 +55,7 @@ function session_check() { //세션 검사
 */  
 function session_del() {//세션 삭제
     if (sessionStorage) {
-        sessionStorage.removeItem("Session_Storage_test");
+        sessionStorage.removeItem("Session_Storage_id");
         alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
     } else {
         alert("세션 스토리지 지원 x");

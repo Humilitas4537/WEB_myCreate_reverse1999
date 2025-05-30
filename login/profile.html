@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title style>리버스 : 1999</title>
+        <meta name="author" content="20221018">
+        <meta name="keywords" content="Game Homepage Reverse:1999">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">  
+        <base href="http://127.0.0.1:5500">
+        <script type="text/javascript" defer src="js/search.js"></script>
+        <script type="text/javascript" defer src="js/pop_up.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script defer src="js/login.js"></script>
+        <script defer src="js/session.js"></script>
+        <script defer src="js/crypto.js"></script>
+        <script defer src="js/jwt_token.js"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0d6e902a7ecba56a6e8d4cec88cbd38e&libraries=services,clusterer,drawing"></script>
+        <script defer src="js/map.js"></script>
+        <link rel="stylesheet" href="../css/profile.css">
+    </head>
+    <body style="background-color:rgb(73, 71, 71);" onload="checkAuth(); init_logined();">
+        <nav class="navbar navbar-expand-lg" style="background-color: rgb(40, 13, 46);" data-bs-theme="dark">
+          <!-- 컨테이너는 최상위 레이아웃 영역을 의미미 -->
+          <div class="container-fluid">
+            <a class="navbar-brand" href="https://reverse1999.haoplay.com/"><img src="image/top-logo.png" width="153" height="33" onmouseover="over(this)" onmouseout="out(this)"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown" style="display: flex; justify-content: center;">
+              <a class="navbar-brand" href="index.html">리버스: 1999</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="https://reverse1999.haoplay.com/">홈</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login/profile.html" target='_blank'>기본정보(프로필)</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="#">뉴스</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">캐릭터</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">세계관</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    지원
+                  </a>
+                  <ul class="dropdown-menu" style="background-color: rgb(40, 13, 46);">
+                    <li><a class="dropdown-item" href="https://reverse1999.haoplay.com/rate.html" target="_blank">확률 표시</a></li>
+                    <li><a class="dropdown-item" href="https://i2.haoplay.com/new/index.html?appid=2072023&l=ko" target="_blank">충전</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="입력" aria-label="Search">
+                <button class="btn btn-outline-info" id="search_button_msg" type="submit">검색하기</button>
+              </form>
+              <li class="nav-item">
+                <a href="login/logout.html" class="btn btn-outline-success" id="logout_btn">로그아웃 하기</a>
+              </li>
+            </div>
+          </div>
+        </nav>
+
+        <hr>
+
+        <section style="background-color: #eee;">
+          <div class="container py-5">
+            <div class="row">
+              <div class="col">
+                <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="card mb-4">
+                  <div class="card-body text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                      class="rounded-circle img-fluid" style="width: 150px;">
+                    <h5 class="my-3">전민성</h5>
+                    <p class="text-muted mb-1">Full Stack Developer</p>
+                    <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                    <div class="d-flex justify-content-center mb-2">
+                      <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Follow</button>
+                      <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-4 mb-lg-0">
+                  <div class="card-body p-0">
+                    <ul class="list-group list-group-flush rounded-3">
+                      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <i class="fas fa-globe fa-lg text-warning"></i>
+                        <p class="mb-0">https://mdbootstrap.com</p>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <i class="fab fa-github fa-lg text-body"></i>
+                        <p class="mb-0">mdbootstrap</p>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                        <p class="mb-0">@mdbootstrap</p>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                        <p class="mb-0">mdbootstrap</p>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                        <p class="mb-0">mdbootstrap</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Full Name</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">전민성</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Email</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">example@example.com</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Phone</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">(097) 234-5678</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Mobile</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">(098) 765-4321</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Address</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">South Korea, Seoul</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card mb-4 mb-md-0">
+                      <div class="card-body">
+                        <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                        </p>
+                        <p class="mb-1" style="font-size: .77rem;">게임 개발</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">웹 디자인</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                        <div class="progress rounded mb-2" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card mb-4 mb-md-0">
+                      <div class="card-body">
+                        <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                        </p>
+                        <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                        <div class="progress rounded" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                        <div class="progress rounded mb-2" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
+
+                  <div class="map_wrap">
+                    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+                    <div id="menu_wrap" class="bg_white">
+                        <div class="option">
+                            <div>
+                                <form onsubmit="searchPlaces(); return false;">
+                                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                                    <button type="submit">검색하기</button> 
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <ul id="placesList"></ul>
+                        <div id="pagination"></div>
+                    </div>
+                  </div>
+                  <p><em>지도를 클릭해주세요!</em></p>
+                   <div id="clickLatlng"></div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 하단 -->
+        
+        <hr>
+        <div style="display: flex; justify-content: center;">
+            <img src="image/company_logo.png" class="img-fluid"  width="225" height="74">
+            <h3 style="font-style: italic; font-family: '굴림'; color: white;">
+                개인정보 보호 약관
+                </h3>
+            </div>
+        <div style="display: flex; justify-content: center;">
+            <h5 style="font-weight: 300;">
+                © 2019 HAOPLAY Limited All rights reserved.
+                © 2019 HAOPLAY Limited All rights reserved.
+                </h5>
+            </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    </body>
+</html>
