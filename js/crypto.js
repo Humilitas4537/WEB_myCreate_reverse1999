@@ -1,3 +1,5 @@
+import { session_set, session_get, session_check } from './session.js';
+
 function encodeByAES256(key, data){ //
     const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
         iv: CryptoJS.enc.Utf8.parse(""), // IV 초기화 벡터
@@ -17,19 +19,27 @@ function decodeByAES256(key, data){
 }
 
 // AES256은 256비트 -> 32바이트 길이의 Key를 사용한다.
-function encrypt_text(password){
+export function encrypt_text(password){
     const k = "key"; // 클라이언트 키
     const rk = k.padEnd(32, " "); // AES256은 key 길이가 32
     const b = password;
-    const eb = this.encodeByAES256(rk, b); // 실제 암호화
+    const eb = encodeByAES256(rk, b); // 실제 암호화
     return eb;
     console.log(eb);
 }
 
-function decrypt_text(){
+export function decrypt_text(){
     const k = "key"; // 서버의 키
     const rk = k.padEnd(32, " "); // AES256은 key 길이가 32
     const eb = session_get();
-    const b = this.decodeByAES256(rk, eb); // 실제 복호화
-    console.log(b);
+    const b = decodeByAES256(rk, eb); // 실제 복호화
+    console.log(`AES256 알고리즘으로 복호화된 객체 : ${b}`);
+}
+
+export function decrypt_object(object){
+    const k = "key"; // 서버의 키
+    const rk = k.padEnd(32, " "); // AES256은 key 길이가 32
+    const eb = object;
+    const b = decodeByAES256(rk, eb); // 실제 복호화
+    return b;
 }

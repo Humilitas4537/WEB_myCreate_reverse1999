@@ -1,3 +1,8 @@
+// ./ 삭제 X, import할 때 ./를 생략하면 외부 패키지(npm,CDN)로 해석하기 때문
+import { session_set, session_get, session_check } from './session.js';
+import { generateJWT, checkAuth } from './jwt_token.js';
+
+
 function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
     const emailInput = document.getElementById('typeEmailX');
     const idsave_check = document.getElementById('idSaveCheck');
@@ -8,31 +13,11 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
     }
     session_check(); // 로그인 버튼이 아닌 init()에다가 추가, 로그인 버튼에다가 추가하는 것은 자원낭비
 }
-
-async function init_logined(){
-    if(sessionStorage){
-        decrypt_text(); // 복호화 함수
-
-        // 문자열로 받은 key, iv 다시 복원
-        const base64key = sessionStorage.getItem("key");
-        const rawkey = base64ToArrayBuffer(base64key); // arrayBuffer로 변환
-        const key = await crypto.subtle.importKey(  // key import
-            'raw',
-            rawkey,
-            { name: 'AES-GCM' },
-            true,
-            ['encrypt', 'decrypt']
-        );
-        const base64iv = sessionStorage.getItem("iv");
-        const iv = base64ToArrayBuffer(base64iv); // arrayBuffer로 변환
-        const base64encrypted = sessionStorage.getItem("Session_Storage_pass2");
-        const encrypted = base64ToArrayBuffer(base64encrypted);
-        await decryptByAES_GCM(encrypted, key, iv);
-    }
-    else{
-        alert("세션 스토리지 지원 x");
-    }
-}
+// 원래 onload는 모든 요소가 로드가 되고 화면에 다 보여진 후 작동, 
+// DOMContentLoaded는 dom트리만 다 완성되면 바로 실행 => 더 빠르다.
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+});
 
 
 // 로그인 횟수 함수는 login.js, 로그아웃 횟수 함수는 logout.js

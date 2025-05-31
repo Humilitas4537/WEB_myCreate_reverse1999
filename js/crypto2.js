@@ -7,7 +7,7 @@ function arrayBufferToBase64(buffer) {
   bytes.forEach(b => binary += String.fromCharCode(b));
   return window.btoa(binary);
 }
-function base64ToArrayBuffer(base64) {
+export function base64ToArrayBuffer(base64) {
   const binary = window.atob(base64);
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i++) {
@@ -21,7 +21,7 @@ function base64ToArrayBuffer(base64) {
 // 2. key 문자열로 변환하여 저장 --- (세션에 저장할 수 있도록 Base64 또는 Hex 문자열로 변환) ---> 세션 저장 가능!
 // 3. 불러올 때는 key 다시 복원 --- (세션으로부터 문자열로 key 받음, ArrayBuffer로 변환 후 import) ---> 복원 완료!
 
-async function encryptByAES_GCM(data) {
+export async function encryptByAES_GCM(data) {
     // AES-GCM 키 생성(256 비트)
     const key = await crypto.subtle.generateKey(
         { name: 'AES-GCM', length: 256 },
@@ -53,11 +53,11 @@ async function encryptByAES_GCM(data) {
 }
 
 
-async function decryptByAES_GCM(encrypted, key, iv) {
+export async function decryptByAES_GCM(encrypted, key, iv) {
     const decrypted = await crypto.subtle.decrypt(
         { name: 'AES-GCM', iv },
         key,
         encrypted
     );
-    return console.log(new TextDecoder().decode(decrypted));
+    return console.log(`AES256-GCM 알고리즘으로 복호화된 비밀번호 : ${new TextDecoder().decode(decrypted)}`);
 }
