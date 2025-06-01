@@ -9,7 +9,7 @@ function joinObject_check(){
     const joinObject = sessionStorage.getItem("Session_Storage_newJoin")
     if(joinObject){
         let objString = decrypt_object(joinObject); // 객체 복호화
-        let object = JSON.parse(objString); // JSON 문자열 객체 -> 객체로 변환
+        let object = JSON.parse(objString); // JSON 문자열 객체 -> 자바스크립트 객체로 변환
         console.log(object);
     }
 }
