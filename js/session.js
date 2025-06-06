@@ -48,6 +48,7 @@ export async function session_set(){ //세션 저장(객체)
     }
 }
 
+// 회원가입 객체 생성
 export function session_set2(object){
     if(sessionStorage){
         const objString = JSON.stringify(object); // 객체 -> JSON 문자열 변환
@@ -66,7 +67,7 @@ export function session_get() { //세션 읽기
         alert("세션 스토리지 지원 x");
     }
 }
-// profile.js에서 사용되는 session_check2에서 사용
+// session_check2에서 사용
 function session_get2(){
     if(sessionStorage){
         return sessionStorage.getItem("Session_Storage_id");
@@ -81,12 +82,12 @@ export function session_check() { //세션 검사
         location.href='../login/index_login.html'; // 로그인된 페이지로 이동
     }
 }
-// profile.js에서 사용
+// profile.html에서 비정상 접근 확인
 export function session_check2(){
     let session_id = session_get2();
     if (!session_id){
         alert("잘못된 접근입니다. 로그인 후 이용해주세요.");
-        location.href="../login/login.html"; // 로그인 페이지로 이동
+        location.href="login.html"; // 로그인 페이지로 이동
     }
 }
 

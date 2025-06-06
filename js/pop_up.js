@@ -1,7 +1,10 @@
+// 중요!
+// 자바스크립트는 자신의 위치가 아닌 html의 위치를 따른다.
+
 function pop_up(){
     var cookieCheck = getCookie("popupYN");
     if (cookieCheck != "N"){
-        window.open("../popup/popup.html", "팝업테스트", "width=400, height=300, top=10, left=10");
+        window.open("popup/popup.html", "팝업테스트", "width=400, height=300, top=10, left=10");
     }
 }
 
@@ -64,6 +67,6 @@ function out(obj) {
     obj.src="../image/top-logo.png";
     }
 */
-const over = obj => obj.src="../image/top-logo3.png";
-const out = obj => obj.src="../image/top-logo.png";
+const over = obj => obj.src="image/top-logo3.png";
+const out = obj => obj.src="image/top-logo.png";
         
