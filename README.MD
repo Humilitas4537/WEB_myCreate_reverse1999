@@ -153,8 +153,8 @@ logout_count()와 함께 로컬스토리지 jwt_token도 삭제
 
 - 응용 문제 완료!  
 profile.html 접근 제한 완료<br>
-1 target="_self"로 기존 세션 정보 유지 -> 세션 내 id 요소 확인<br>
-2 id가 없으면 로그인 페이지로 이동
+1.target="_self"로 기존 세션 정보 유지 -> 세션 내 id 요소 확인<br>
+2.id가 없으면 로그인 페이지로 이동
 
 - 카카오맵 api 활용, 지도 및 장소검색, 마커 구현
 
