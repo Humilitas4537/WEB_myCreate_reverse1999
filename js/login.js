@@ -93,7 +93,7 @@ const check_xss = (input) => {
     if (sanitizedInput !== input) {
         // XSS 공격 가능성 발견 시 에러 처리
         alert('XSS 공격 가능성이 있는 입력값을 발견했습니다.');
-    return false;
+        return false;
     }
     // Sanitized된 값 반환
     return sanitizedInput;
