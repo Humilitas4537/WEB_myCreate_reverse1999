@@ -2,7 +2,12 @@ import { session_check2 } from "./session.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     session_check2();
+
 })
+
+// 검색 기능
+document.getElementById('searchForm').addEventListener('submit', searchPlaces);
+
 
 // 마커를 담을 배열입니다
 var markers = [];
