@@ -1,9 +1,9 @@
 import { session_check2 } from "./session.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    session_check2();
-
-})
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();  // ← 새로고침 막기 위해 필수
+    searchPlaces();
+});
 
 // 검색 기능
 document.getElementById('searchForm').addEventListener('submit', searchPlaces);
