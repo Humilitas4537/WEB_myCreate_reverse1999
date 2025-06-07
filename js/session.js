@@ -87,7 +87,7 @@ export function session_check2(){
     let session_id = session_get2();
     if (!session_id){
         alert("잘못된 접근입니다. 로그인 후 이용해주세요.");
-        location.href="login.html"; // 로그인 페이지로 이동
+        location.href="login/login.html"; // 로그인 페이지로 이동
     }
 }
 
