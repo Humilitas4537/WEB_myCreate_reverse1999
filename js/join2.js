@@ -1,10 +1,7 @@
 import { decrypt_object } from './crypto.js'
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    joinObject_check();
-})
-
-function joinObject_check(){
+// 로그인 후 화면에서 복호화 후 콘솔 출력
+export function joinObject_check(){
     // 암호화된 (JSON 문자열)객체 가져오기
     const joinObject = sessionStorage.getItem("Session_Storage_newJoin")
     if(joinObject){

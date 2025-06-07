@@ -2,10 +2,12 @@
 import { encrypt_text, decrypt_text } from './crypto.js';
 import { base64ToArrayBuffer, decryptByAES_GCM } from './crypto2.js';
 import { generateJWT, checkAuth } from './jwt_token.js';
+import { joinObject_check } from './join2.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     init_logined();
+    joinObject_check();
 });
 
 
